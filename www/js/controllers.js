@@ -10,7 +10,10 @@ angular.module('starter.controllers', [])
   //});
 
   // Form data for the login modal
-  $scope.isLoggedIn = false;
+  $scope.data = { isLoggedIn:false,
+                  loginFailed: false
+                };
+  $scope.alert = {shown: false};
 
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
@@ -34,17 +37,24 @@ angular.module('starter.controllers', [])
     $auth.authenticate(provider)
       .then(function(response) {
         console.log("Login with facebook app is done");
-        $scope.isLoggedIn = true;
+        $scope.data.isLoggedIn = true;
+        $scope.data.loginFailed = false;
+        $scope.alert.shown = true;
       })
       .catch(function(response) {
         console.log("facebook login does not work");
-        $scope.isLoggedIn = false;
+        $scope.data.loginFailed = true;
+        $scope.alert.shown = true;
       });
   }
 
   $scope.logout = function(){
     $auth.logout();
-    $scope.isLoggedIn = false;    
+    $scope.data.isLoggedIn = false;    
+  }
+
+  $scope.alert_dismiss = function(){
+    $scope.alert.shown = false;
   }
 })
 

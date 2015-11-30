@@ -5,6 +5,7 @@
     "ionic": "driftyco/ionic-bower#1.1.1"
   },
   "dependencies": {
-    "satellizer": "~0.13.1"
+    "satellizer": "~0.13.1",
+    "bootstrap": "~3.3.6"
   }
 }
